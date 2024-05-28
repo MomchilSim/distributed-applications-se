@@ -1,0 +1,25 @@
+get http://localhost:5161/accounts
+###
+get http://localhost:5161/accounts/1
+###
+POST http://localhost:5161/accounts
+Content-Type: application/json
+
+{
+        "UserId":24,
+        "AccountName":"acc name",
+        "Balance":12.12 ,
+        "Currency":"bgn"
+}
+###
+PUT http://localhost:5161/accounts/1
+Content-Type: application/json   
+
+{
+       "UserId":1,
+        "AccountName":"124124",
+        "Balance":1223.2,
+        "Currency":"1241"
+}
+###
+DELETE http://localhost:5161/accounts/2

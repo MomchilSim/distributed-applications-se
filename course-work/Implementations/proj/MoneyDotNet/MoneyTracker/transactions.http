@@ -1,0 +1,26 @@
+get http://localhost:5161/transactions
+###
+get http://localhost:5161/transactions/19
+
+###
+POST http://localhost:5161/transactions
+Content-Type: application/json
+
+{
+        "AccountId":9,
+        "Amount":12.13,
+        "Category":"a123",
+        "Description":"b123"
+}
+###
+PUT http://localhost:5161/transactions/1
+Content-Type:   application/json   
+
+{
+        "AccountId":1,
+        "Amount":12.2,
+        "Category":"3",
+        "Description":"b12"
+}
+###
+DELETE http://localhost:5161/transactions/18

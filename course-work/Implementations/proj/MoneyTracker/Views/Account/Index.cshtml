@@ -1,0 +1,73 @@
+﻿@model X.PagedList.IPagedList<AccountDisplayModel>
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Accounts</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form method="get" asp-action="Index">
+    <label for="accname">Filter by Name</label>
+    <input type="text" id="AccountName" name="accname"></input>
+    <button type="submit"> press me </button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                AccountId
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                AccountName
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Currency
+            </th>
+            <th>
+                CreatedDate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.AccountId }) |
+                    @Html.ActionLink("Details", "Details", new {id=item.AccountId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.AccountId  })
+            </td>
+        </tr>
+        }
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </tbody>
+</table>

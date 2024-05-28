@@ -1,0 +1,61 @@
+﻿@model X.PagedList.IPagedList<UserModel>
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form method ="get" asp-action="Index">
+    <label for="username">Filter by Name</label>
+    <input type="text" id="UserName" name="username"></input>
+    <button type="submit"> press me </button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                    UserName
+            </th>
+            <th>
+                    Password
+            </th>
+            <th>
+                    Email
+            </th>
+            <th>
+                    DateOfBirth
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+                @Html.ActionLink("Details", "Details", new {id=item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+            </td>
+        </tr>
+}       
+        <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </tbody>
+</table>
